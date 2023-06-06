@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LP</title>
+  <style type="text/css">
+    @font-face {
+      font-family: 'Nimbus-L-Bold-Condensed';
+      src: url('https://ccc-frontend.github.io/fonts/fonts/NimbusSansT-BlackCondensed.otf');
+      format: 'opentype';
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nimbus';
+      src: url('https://ccc-frontend.github.io/fonts/fonts/Nimbus Regular.ttf');
+      format: 'truetype';
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Nimbus';
+      src: url('https://ccc-frontend.github.io/fonts/fonts/Nimbus-Sans-Bold.woff2');
+      format: 'woff2';
+      font-weight: 500;
+      font-display: swap;
+    }
+    body {
+      margin: 0;
+    }
+    .main {
+      width: 100%;
+      color: #000;
+      font-family: 'Nimbus', sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: normal;
+      letter-spacing: -0.008em;
+      min-width: 320px;
+      max-width: 1300px;
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 0 3px 0;
+      grid-gap: 6px;
+      gap: 6px;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1300px) {
+      .main {
+        overflow: hidden;
+      }
+    }
+    @media (max-width: 1440px) {
+      .main {
+        max-width: 1200px;
+      }
+    }
+    @media (max-width: 764px) {
+      .main {
+        padding: 0 0 1.5px 0;
+        grid-gap: 3px;
+        gap: 3px;
+      }
+    }
+    .main *,
+    .main *::before,
+    .main *::after {
+      box-sizing: inherit;
+    }
+    .main::before {
+      content: '';
+      width: 100vw;
+      height: 100%;
+      display: block;
+      background-color: #223474;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      z-index: -1;
+    }
+    @media (max-width: 1300px) {
+      .main::before {
+        width: 100%;
+      }
+    }
+    .header {
+      width: 100%;
+      max-width: 1300px;
+      padding: 8vw 0;
+      margin: 0 auto;
+    }
+    @media (max-width: 455px) {
+      .header {
+        padding: 50px 0 40px;
+      }
+    }
+    .header__img {
+      display: block;
+      margin: 0 auto;
+      width: 50%;
+      min-width: 320px;
+    }
+    @media (max-width: 455px) {
+      .header__img {
+        min-width: 80%;
+      }
+    }
+    .poster {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 1000px) {
+      .poster {
+        flex-wrap: wrap;
+      }
+    }
+    .poster__photo {
+      width: 50%;
+      padding-left: 40px;
+    }
+    @media (max-width: 1000px) {
+      .poster__photo {
+        width: 100%;
+        padding: 0 40px;
+        margin-bottom: 65px;
+      }
+    }
+    @media (max-width: 455px) {
+      .poster__photo {
+        padding: 0 20px;
+      }
+    }
+    .poster__article {
+      width: 50%;
+      padding: 0 60px;
+    }
+    @media (max-width: 1000px) {
+      .poster__article {
+        width: 100%;
+        padding: 0 40px;
+      }
+    }
+    @media (max-width: 455px) {
+      .poster__article {
+        padding: 0 20px;
+      }
+    }
+    .poster__img {
+      display: block;
+      width: 100%;
+    }
+    .text {
+      font-family: 'Nimbus';
+      font-size: 14px;
+      font-weight: normal;
+      color: #fff;
+      text-align: center;
+      line-height: 150%;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+    .text--big {
+      font-family: 'Nimbus';
+      font-weight: 500;
+      font-style: normal;
+      font-size: 35px;
+      color: #d1a753;
+      line-height: 120%;
+      max-width: 440px;
+      margin: 0 auto 25px auto;
+    }
+    .form {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 40px;
+    }
+    @media (max-width: 455px) {
+      .form {
+        padding: 60px 20px;
+      }
+    }
+    .form__form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .form__input {
+      font-family: 'Nimbus';
+      border: 1px solid #fff;
+      font-size: 16px;
+      height: 30px;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 5px 10px;
+      background-color: #fff !important;
+    }
+    .form__input:focus {
+      outline: none;
+    }
+    .form__label {
+      font-family: 'Nimbus';
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      line-height: 150%;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    @media (max-width: 450px) {
+      .form__label {
+        font-size: 14px;
+      }
+    }
+    .form__area {
+      font-family: 'Nimbus';
+      font-size: 16px;
+      border: 1px solid #fff;
+      width: 100%;
+      resize: none;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+    }
+    .form__area:focus {
+      outline: none;
+    }
+    .form__small-text {
+      text-decoration: none;
+      color: #fff;
+      font-size: 9px;
+      text-align: right;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      align-self: flex-end;
+    }
+    .form__small-text:hover {
+      color: #fff;
+    }
+    .form__checkbox {
+      display: flex;
+    }
+    .form__check {
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+      outline: none;
+      background-color: #fff !important;
+      border: 1px solid rgba(0, 0, 0, 0);
+      -moz-appearance: none;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+    }
+    .form__check:checked {
+      background-color: #d1a753 !important;
+    }
+    .form__rules {
+      width: 100%;
+      margin: 20px 0;
+      font-family: 'Nimbus';
+      color: #fff;
+      font-size: 12px;
+    }
+    .form__btn {
+      margin-top: 30px;
+      font-family: 'Nimbus';
+      font-size: 16px;
+      font-weight: 400;
+      padding: 14px 50px 11px;
+      line-height: 1;
+      background-color: #d1a753;
+      border: 1px solid #d1a753;
+      color: #000;
+      text-transform: uppercase;
+      align-self: flex-end;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    @media (max-width: 455px) {
+      .form__btn {
+        align-self: center;
+        padding: 14px 60px 11px;
+      }
+    }
+    .form__btn:hover {
+      background-color: rgba(0, 0, 0, 0);
+      color: #fff;
+    }
+    .video {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    .video__video {
+      display: block;
+      width: 100%;
+      max-width: 850px;
+      aspect-ratio: 850/500;
+    }
+    .video__text {
+      font-family: 'Nimbus';
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      line-height: 150%;
+      letter-spacing: 1px;
+      margin-bottom: 55px;
+      max-width: 550px;
+      padding: 0 40px;
+    }
+    .footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding-bottom: 7vw;
+      margin-top: 75px;
+    }
+    .footer__img {
+      display: block;
+      margin: 0 auto;
+      width: 250px;
+      margin-bottom: 35px;
+    }
+    .footer__btn {
+      font-family: 'Nimbus';
+      font-size: 14px;
+      display: inline-block;
+      margin: 0 auto;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 12px 70px;
+      border: 1px solid #d1a753;
+      text-decoration: none;
+      transition: 0.3s;
+      margin-bottom: 25px;
+    }
+    .footer__btn:hover {
+      background-color: #d1a753;
+      color: #000;
+    }
+    .footer__small-text {
+      font-family: 'Nimbus';
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .footer__small-text:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<main class="main">
+  <header class="header">
+    <img class="header__img" src="images/logos.png" alt="" />
+  </header>
+  <section class="poster">
+    <div class="poster__photo">
+      <picture
+        ><source srcset="images/poster-d.jpg" media="(min-width: 1000px)" />
+        <img class="poster__img" src="images/poster.jpg" alt="" loading="lazy"
+      /></picture>
+    </div>
+    <article class="poster__article">
+      <h1 class="text text--big">Klubowiczu! Czas na nową przygodę z Klubem CCC</br>i Kino Świat!</h1>
+      <p class="text">Światowy fenomen „Miraculous: Biedronka i Czarny Kot. Film” wkracza do kin!</p>
+      <p class="text">
+        To zapierająca dech w piersiach animacja oparta na kultowym serialu. Marinette, nieśmiała nastolatka
+        przemieniona w superbohaterkę Biedronkę łączy siły z Czarnym Kotem, aby pokonać tajemniczego złoczyńcę, który
+        zaczyna grozić Paryżowi czarną magią.Tak zaczyna się ich wspólna przygoda...<br />Jesteś ciekawy co wydarzy się
+        dalej?
+      </p>
+
+      <p class="text">
+        Weź udział w konkursie i wygraj dwa bilety do kina na „Miraculous: Biedronka i Czarny Kot. Film” w sieci kin
+        Helios! Odpowiedz na pytanie konkursowe do <b>06.07.2023</b> i zyskaj szansę na niezapomnianą przygodę w
+        doborowym towarzystwie!
+      </p>
+    </article>
+  </section>
+  <section class="form">
+    <form class="form__form">
+      <label class="form__label" for="name">Imię i nazwisko</label
+      ><input class="form__input" id="name" type="text" /><label class="form__label" for="">Adres email</label
+      ><input class="form__input" type="text" /><label class="form__label" for="">Number karty Klubowicza CCC</label
+      ><input class="form__input" type="text" /><a class="form__small-text" href="">Gdzie go znajdę?</a
+      ><label class="form__label" for=""
+        >Z kim wybierzesz się do kina na film „Miraculous: Biedronka i Czarny Kot. Film” i dlaczego?</label
+      ><textarea class="form__area" name="" id="" cols="30" rows="8"></textarea>
+      <div class="form__checkbox">
+        <input class="form__check" id="check" type="checkbox" /><label class="form__label" for="check"
+          >Akceptuję Regulamin*</label
+        >
+      </div>
+      <p class="form__rules">*pole obowiązkowe</p>
+      <p class="form__rules">
+        1. Administratorem danych osobowych Uczestników CCC S.A. z siedzibą w Polkowicach, ul. Strefowa 6, 59-101
+        Polkowice, wpisana do Rejestru Przedsiębiorców prowadzonego przez Sąd Rejonowy dla Wrocławia Fabrycznej we
+        Wrocławiu, IX Wydz. Gosp. KRS, pod numerem KRS 0000211692, NIP 6922200609, REGON 390716905, o kapitale
+        zakładowym 5.486.800 zł, wpłaconym w całości; adres poczty elektronicznej: info.pl@ccc.eu (dalej:
+        Organizator).<br />2. Kontakt z Inspektorem Ochrony Danych Osobowych jest możliwy korespondencyjnie na adres
+        iod@ccc.eu oraz na adres siedziby Organizatora.<br />3. Podstawą przetwarzania danych osobowych jest:<br />a.
+        art. 6 ust. 1 lit. f RODO tj. prawnie uzasadniony interes administratora w zakresie przeprowadzenia konkursu,
+        wysyłki nagród, rozpoznawania reklamacji i dochodzenia roszczeń;<br />b. art. 6 ust. 1 lit. c RODO tj. obowiązki
+        prawne jakie nakładane są na Organizatora tj. rozliczenia księgowe i podatkowe.
+      </p>
+      <button class="form__btn" type="submit">Wy&sacute;lij</button>
+    </form>
+  </section>
+  <section class="video">
+    <p class="video__text">
+      Zobacz zwiastu filmu „Miraculous: Biedronka i Czarny Kot. Film"</br>i w towarzystwie superbohaterów przyżyj
+      fantastyczną przygodę. Tylko w kinach od 7 lipca!
+    </p>
+    <iframe class="video__video" src="https://www.youtube.com/embed/HKGiEj8iw7I" title="YouTube video player"></iframe>
+  </section>
+  <footer class="footer">
+    <img class="footer__img" src="images/klub-ccc.svg" alt="klub-ccc" />
+    <p class="text">Ale hit! Wyjątkowy konkurs<br />dla wszystkich Klubowiczów CCC!</p>
+    <p class="text">Odbierz zniżkę <b>10%</b> już dziś<br />wykorzystaj ją na zakupy w CCC!</p>
+    <a class="footer__btn" href="">Dołącz do klubu</a><a class="footer__small-text" href="">Zaloguj się</a>
+  </footer>
+</main>
